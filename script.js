@@ -121,124 +121,123 @@ console.log("despues del timeout!"); // 1
 //   clearInterval(idInterval);
 // }, 6000);
 
-
-
-
 // OBJ METHODS & PROPERTIES
 
 let person = {
-    name: "Alicia",
-    place: "Pais de las Maravillas",
-    friends: ["Sombrerero", "Gato Cheshire", "Liebre de Marzo", "Humpty Dumpty", "Conejo Blanco"],
-    sayHello() {
-        console.log(this)
-        return `Hola, mi nombre es ${this.name} de ${this.place}`
-        // this => para referirnos al objeto donde la estamos utilizamos
-    },
-    currentSize() {
-        // nos diga si Alicia esta grande o pequeña
-        // completamente aleatorio
-        // 50% Alice es grande
-        // 50% Alice es pequeña
-        let randomNum = Math.random() // => 0 - 0.999999999
-        if (randomNum > 0.5) {
-            return `${this.name} es grande`
-        } else {
-            return `${this.name} es pequeña`
-        }
-    },
-    felizNoCumpleaños() {
-        // alreatoriamente va a desear feliz no cumpleaños a un amigo de la persona
-        let friendQty = this.friends.length;
-        
-        // clausula guardia
-        if (friendQty === 0) {
-            return "no tiene amigos :("
-        }
-
-        let randomNum = Math.random() * friendQty // 0 - 5 (decimales)
-        let randomIndex = Math.floor(randomNum)
-        return `Feliz Feliz no cumpleaños a ${this.friends[randomIndex]}`
+  name: "Alicia",
+  place: "Pais de las Maravillas",
+  friends: [
+    "Sombrerero",
+    "Gato Cheshire",
+    "Liebre de Marzo",
+    "Humpty Dumpty",
+    "Conejo Blanco",
+  ],
+  sayHello() {
+    console.log(this);
+    return `Hola, mi nombre es ${this.name} de ${this.place}`;
+    // this => para referirnos al objeto donde la estamos utilizamos
+  },
+  currentSize() {
+    // nos diga si Alicia esta grande o pequeña
+    // completamente aleatorio
+    // 50% Alice es grande
+    // 50% Alice es pequeña
+    let randomNum = Math.random(); // => 0 - 0.999999999
+    if (randomNum > 0.5) {
+      return `${this.name} es grande`;
+    } else {
+      return `${this.name} es pequeña`;
     }
-}
+  },
+  felizNoCumpleaños() {
+    // alreatoriamente va a desear feliz no cumpleaños a un amigo de la persona
+    let friendQty = this.friends.length;
 
-console.log( person.name )
+    // clausula guardia
+    if (friendQty === 0) {
+      return "no tiene amigos :(";
+    }
 
-console.log( person.sayHello() )
+    let randomNum = Math.random() * friendQty; // 0 - 5 (decimales)
+    let randomIndex = Math.floor(randomNum);
+    return `Feliz Feliz no cumpleaños a ${this.friends[randomIndex]}`;
+  },
+};
+
+console.log(person.name);
+
+console.log(person.sayHello());
 // person.name = "Caro"
 // console.log( person.sayHello() )
 
-console.log( person.currentSize() )
+console.log(person.currentSize());
 
-console.log( person.felizNoCumpleaños() )
-
+console.log(person.felizNoCumpleaños());
 
 // en metodos tradicionales la palabra this apunta al objeto que tiene es ese metodo
 // en metodos de flecha, la palabra this apunta al scope global (window)
 
 // creando metodos en OBJ es mejor utilizar funciones tradicionales.
 
-
-
 // OOP
 
-let newStr1 = "Hola"
-console.log(newStr1)
+let newStr1 = "Hola";
+console.log(newStr1);
 
 // String
-let newStr2 = String("Hola")
-console.log(newStr2)
+let newStr2 = String("Hola");
+console.log(newStr2);
 
-let newStr3 = new String("Hola")
-console.log(newStr3)
+let newStr3 = new String("Hola");
+console.log(newStr3);
 
+String.prototype.patata = function () {
+  return "Mi metodo Custom Made!";
+};
 
-String.prototype.patata = function() {
-    return "Mi metodo Custom Made!"
-}
-
-console.log( newStr1.patata() )
-
-
+console.log(newStr1.patata());
 
 // Clases
 
-
 class Hero {
+  // la seccion donde definimos todas las propiedades que tendran los objetos de esta clase
+  constructor(nameParam, identityParam) {
+    // this.name = "Iron Man";
+    this.name = nameParam;
+    this.identity = identityParam;
+    this.isEvil = false;
+  }
 
-    // la seccion donde definimos todas las propiedades que tendran los objetos de esta clase
-    constructor(nameParam, identityParam) {
-        // this.name = "Iron Man";
-        this.name = nameParam;
-        this.identity = identityParam;
-        this.isEvil = false;
-    }
+  // la seccion donde definimos todos los metodos que tendran los objetos de esta clase
 
-    // la seccion donde definimos todos los metodos que tendran los objetos de esta clase
+  // Aqui podemos definirlas como tradicionales o como flecha
+  revealSecret() {
+    return `Mi identidad secreta es ${this.identity}`;
+  }
 
-    // Aqui podemos definirlas como tradicionales o como flecha
-    revealSecret() {
-        return `Mi identidad secreta es ${this.identity}`
-    }
+  // ejemplo de metodo funcion de flecha
+  turnEvil = () => {
+    this.isEvil = true;
+    return `${this.name} se ha vuelto villano!`;
+  }
 
-    // ejemplo de metodo funcion de flecha
-    turnEvil = () => {
-        this.isEvil = true;
-        return `${this.name} se ha vuelto villano!`
-    }
+  kickSomeone(personToKick) {
+    return `${this.name} le da una patada a ${personToKick}`
+  }
 
 }
 
 // crea un nuevo (new) elemento basado en esta plantilla (Clase)
-let hero1 = new Hero("Iron Man", "Tony Stark")
-console.log(hero1)
-console.log(hero1.name)
-console.log(hero1.revealSecret())
-console.log(hero1.turnEvil())
-console.log(hero1)
+let hero1 = new Hero("Iron Man", "Tony Stark");
+console.log(hero1);
+console.log(hero1.name);
+console.log(hero1.revealSecret());
+console.log(hero1.turnEvil());
+console.log(hero1);
 
-// let hero2 = new Hero("Black Widow", "Natasha Romanof")
-// console.log(hero2)
-// console.log(hero2.revealSecret())
-
+let hero2 = new Hero("Black Widow", "Natasha Romanof")
+console.log(hero2)
+console.log(hero2.revealSecret())
+console.log(hero2.kickSomeone(hero1.name))
 
