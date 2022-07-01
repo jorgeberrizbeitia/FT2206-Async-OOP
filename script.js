@@ -241,3 +241,30 @@ console.log(hero2)
 console.log(hero2.revealSecret())
 console.log(hero2.kickSomeone(hero1.name))
 
+
+// SUBCLASES
+
+
+class SuperHero extends Hero {
+
+    // seccion de propiedades
+    constructor(nameParam, identityParam, superPowerParam) {
+        // le indico a JS que voy a pasar parametros para crear propiedades de la clase padre
+        super(nameParam, identityParam);
+        this.superPower = superPowerParam;
+    }
+
+    // seccion de metodos (automaticame los hereda del padre)
+    usePower = (target) => {
+        return `${this.name} ha usado ${this.superPower} sobre ${target}`
+    }
+
+}
+
+let hero3 = new SuperHero("Spider-man", "Peter Parker", "Sentido Aracnido")
+console.log(hero3)
+
+let hero4 = new SuperHero("Deapool", "Ryan Reynolds", "Regeneracion")
+
+console.log(hero3.kickSomeone(hero4.name))
+console.log(hero3.usePower(hero4.name))
